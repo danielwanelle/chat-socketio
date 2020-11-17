@@ -1,0 +1,9 @@
+{
+  "name": "chat-socketio",
+  "version": "1.0.0",
+  "description": "Um chat utilizando socket.IO",
+  "main": "index.js",
+  "repository": "https://github.com/danielwanelle/chat-socketio.git",
+  "author": "Daniel Wanelle <danielwanelle@gmail.com>",
+  "license": "MIT"
+}
