@@ -8,7 +8,7 @@ const simpleDependencies = [
 ];
 
 simpleDependencies.forEach(val => {
-    container.register(val[0], () => {
+    container.register(val[0], function() {
         return require(val[1]);
     });
 });
@@ -16,7 +16,7 @@ simpleDependencies.forEach(val => {
 container.load(path.join(__dirname, '/controllers'));
 container.load(path.join(__dirname, '/helpers'));
 
-container.register('container', () => {
+container.register('container', function() {
     return container;
 });
 
