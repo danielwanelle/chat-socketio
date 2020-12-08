@@ -13,11 +13,16 @@ const passport = require('passport');
 
 container.resolve(function(users) {
     mongoose.Promise = global.Promise;
-    mongoose.connect('mongodb://localhost/footballkik', {useMongoClient: true});
+    mongoose.connect('mongodb://localhost/footballkik', {
+        useUnifiedTopology: true,
+        useNewUrlParser: true
+    });
 
     const app = SetupExpress();
 
     function SetupExpress(){
+        require('./passport/passport-local');
+        
         const app = express();
         const server = http.createServer(app);
         server.listen(3000, function() {
@@ -39,12 +44,15 @@ container.resolve(function(users) {
         app.use(bodyParser.json());
         app.use(bodyParser.urlencoded({extended: true}));
         
-        app.use(validator());
+        // app.use(validator());
         app.use(session({
             secret: 'thisisasecretkey',
             resave: true,
             saveInitialized: true,
-            store: new MongoStore({mongooseConnection: mongoose.connection})
+            saveUninitialized: false,
+            store: new MongoStore({
+                mongooseConnection: mongoose.connection
+            })
         }));
 
         app.use(flash());
