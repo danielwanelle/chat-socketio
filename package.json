@@ -2,11 +2,12 @@
   "name": "chat-socketio",
   "version": "1.0.0",
   "description": "Um chat utilizando socket.IO",
-  "main": "index.js",
+  "main": "server.js",
   "repository": "https://github.com/danielwanelle/chat-socketio.git",
   "author": "Daniel Wanelle <danielwanelle@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "bcrypt-nodejs": "^0.0.3",
     "body-parser": "^1.19.0",
     "connect-flash": "^0.1.1",
     "connect-mongo": "^3.2.0",
