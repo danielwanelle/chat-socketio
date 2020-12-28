@@ -11,7 +11,7 @@ const flash = require('connect-flash');
 const container = require('./container');
 const passport = require('passport');
 
-container.resolve(function(users) {
+container.resolve(function(users, _) {
     mongoose.Promise = global.Promise;
     mongoose.connect('mongodb://localhost/footballkik', {
         useUnifiedTopology: true,
@@ -25,7 +25,7 @@ container.resolve(function(users) {
         
         const app = express();
         const server = http.createServer(app);
-        server.listen(3000, function() {
+        server.listen(3001, function() {
             console.log('Ouvindo a porta 3000');
         });
 
@@ -44,7 +44,7 @@ container.resolve(function(users) {
         app.use(bodyParser.json());
         app.use(bodyParser.urlencoded({extended: true}));
         
-        // app.use(validator());
+        app.use(validator());
         app.use(session({
             secret: 'thisisasecretkey',
             resave: true,
@@ -59,5 +59,7 @@ container.resolve(function(users) {
 
         app.use(passport.initialize());
         app.use(passport.session());
+
+        app.locals._ = _;
     }
 });
