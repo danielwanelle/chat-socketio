@@ -3,7 +3,6 @@ const bodyParser = require('body-parser');
 const ejs = require('ejs');
 const http = require('http');
 const cookieParser = require('cookie-parser');
-const validator = require('express-validator');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 const mongoose = require('mongoose');
@@ -25,7 +24,7 @@ container.resolve(function(users, _) {
         
         const app = express();
         const server = http.createServer(app);
-        server.listen(3001, function() {
+        server.listen(3000, function() {
             console.log('Ouvindo a porta 3000');
         });
 
@@ -44,7 +43,6 @@ container.resolve(function(users, _) {
         app.use(bodyParser.json());
         app.use(bodyParser.urlencoded({extended: true}));
         
-        app.use(validator());
         app.use(session({
             secret: 'thisisasecretkey',
             resave: true,
